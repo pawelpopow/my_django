@@ -3,24 +3,27 @@ from django.shortcuts import render, redirect
 from form.models import Message
 
 
-def form(request):
-    if request.method == "POST":
-        data = request.POST
+def task_create_view(request):
+    task = request.POST.get('task')
 
-        Message.objects.create(
-            name=data.get('name'),
-            email=data.get('email'),
-            category=data.get('category'),
-            subject=data.get('subject'),
-            body=data.get('body')
-        )
+    if task:
+        Task.objects.create(name=task)
 
-        return redirect('form:news-list')
+        return redirect('form:task-list')
 
     return render(
         request,
-        "form/news.html"
+        'taskapp/new_form.html',
     )
 
 
+def task_list_view(request):
+    tasks = Task.objects.all()
 
+    return render(
+        request,
+        'taskapp/new_list.html',
+        context={
+            'tasks': tasks,
+        }
+    )
