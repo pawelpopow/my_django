@@ -1,0 +1,24 @@
+{% extends 'form/layout.html' %}
+
+{% block body %}
+  {% if task %}
+    <h2>Zmodyfikuj imie</h2>
+  {% else %}
+    <h2>Zarejestruj imie</h2>
+  {% endif %}
+
+  <form method="POST" >{% csrf_token %}
+      {% if task %}
+        <input type="text" name="task" value="{{ task.name }}" placeholder="task">
+      {% else %}
+        <input type="text" name="task" placeholder="task">
+      {% endif %}
+
+      {% if task %}
+          <input class="btn btn-info" type="submit" value="Zmień">
+      {% else %}
+          <input class="btn btn-secondary" type="submit" value="Zarejestruj">
+      {% endif %}
+  </form>
+  <a href="{% url 'form:task-list' %}"><button class="btn btn-dark">Wróc do listy</button></a>
+{% endblock body %}

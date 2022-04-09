@@ -1,0 +1,7 @@
+{% extends 'form/layout.html' %}
+
+{% block body %}
+    <h2>Lista imion {{ task.id }}</h2>
+    <p>{{ task.name }}</p>
+    <a href="{% url 'form:task-list' %}"><button>Wróć do listy imion</button></a>
+{% endblock body %}

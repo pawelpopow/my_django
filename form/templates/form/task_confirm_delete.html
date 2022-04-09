@@ -1,0 +1,13 @@
+{% extends 'form/layout.html' %}
+
+{% block title %}Potwierdź usunięcie{% endblock %}
+
+{% block body %}
+  <h2>Usuwanie imie</h2>
+  <form method="POST" style="display: inline;">{% csrf_token %}
+    <p>Czy jesteś pewien, że chcesz usunąć zadanie {{ task.name }} ?</p>
+    <input class="btn btn-success" type="submit" value="Potwierdź">
+  </form>
+
+  <a href="{% url 'form:task-list' %}"><button class="btn btn-warning">Anuluj</button></a>
+{% endblock body %}

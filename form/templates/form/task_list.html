@@ -1,0 +1,15 @@
+{% extends 'form/layout.html' %}
+
+{% block body %}
+      <h2 style="display:inline">Lista imion</h2>
+      <a href="{% url 'form:task-create' %}"><button class="btn btn-primary">Nowy</button></a>
+      <ol>
+          {% for task in tasks %}
+            <li style="margin:1em;">
+                <a href="{% url 'form:task-detail' task.id %}">{{ task.name }}</a>
+                <a href="{% url 'form:task-update' task.id %}"><button class="btn btn-primary">Zmień</button></a>
+                <a href="{% url 'form:task-delete' task.id %}"><button class="btn btn-danger">Usuń</button></a>
+            </li>
+          {% endfor %}
+      </ol>
+{% endblock body %}
